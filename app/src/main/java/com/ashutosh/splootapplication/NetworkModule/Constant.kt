@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.io.IOException
-N
+
 
 fun<T> result(call:suspend () -> Response<T>):Flow<NetworkResult<T>> = flow {
     emit(NetworkResult.Loading)

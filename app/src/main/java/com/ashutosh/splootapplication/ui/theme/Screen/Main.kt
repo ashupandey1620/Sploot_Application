@@ -51,6 +51,7 @@ fun Main(navController: NavController) {
 
     LaunchedEffect(key1 = newsVM.isOpenFolderClick) {
         showBottomSheet = newsVM.isOpenFolderClick
+        newsVM.getTopNews()
     }
 
     val context = LocalContext.current.applicationContext

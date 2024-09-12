@@ -1,6 +1,6 @@
 package com.ashutosh.splootapplication.NetworkModule.Model
 
-data class TopNewsRequest(
+data class TopNewsResponse(
     val articles: List<Article>,
     val status: String,
     val totalResults: Int

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,15 +23,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ashutosh.splootapplication.Navigation.Routes
 import com.ashutosh.splootapplication.R
 import com.ashutosh.splootapplication.ui.theme.SplootApplicationTheme
+import kotlinx.coroutines.delay
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Splash(navController: NavController) {
+
+
+
+
+
+    LaunchedEffect(key1 = true) {
+        delay(2000)
+        navController.popBackStack()
+        navController.navigate(Routes.Main.name)
+    }
+
+
+
     Scaffold(modifier = Modifier
         .fillMaxSize(),
         content = {
+
+
 
             Column(
                 modifier = Modifier

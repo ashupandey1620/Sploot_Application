@@ -53,8 +53,8 @@ fun CardFolderLayout(
 
     Column (modifier = Modifier
         .padding(10.dp)
-        .width(180.dp)
-        .height(160.dp)
+        .fillMaxWidth()
+        .height(200.dp)
         .clip(RoundedCornerShape(15.dp))
         .background(Color.Gray.copy(0.3f))
         .clickable {

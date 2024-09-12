@@ -30,7 +30,7 @@ fun AppNavigation(viewModel: NewsViewModel) {
                 )
             }
 
-            composable(Routes.Splash.name) {
+            composable(Routes.Main.name) {
                 Main(
                     navController
                 )

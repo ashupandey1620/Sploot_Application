@@ -22,9 +22,8 @@ import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ashutosh.fsd.ui.theme.FSDTheme
-import com.ashutosh.fsd.ui.theme.Pink40
-
+import com.ashutosh.splootapplication.ui.theme.Pink40
+import com.ashutosh.splootapplication.ui.theme.SplootApplicationTheme
 
 
 @Composable
@@ -83,7 +82,7 @@ fun ThemeOptionItem(
 @Preview
 @Composable
 fun ThemeOptionComponentPreview() {
-	FSDTheme {
+	SplootApplicationTheme {
 		ThemeOptionComponent(defaultTheme = AppTheme.Light, onSelect = {})
 	}
 }

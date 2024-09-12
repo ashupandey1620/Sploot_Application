@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -34,7 +36,7 @@ data class SupportCardList(
 @Composable
 fun CardFolderPage(navController: NavController) {
 
-    val gridState = rememberLazyGridState()
+    val gridState = rememberLazyListState()
 
     val context = LocalContext.current
 
@@ -78,9 +80,8 @@ fun CardFolderPage(navController: NavController) {
 
                 if (ItemsList.value != null && ItemsList.value!!.isNotEmpty()) {
 
-                    LazyVerticalGrid(
+                    LazyColumn(
                         state = gridState ,
-                        columns = GridCells.Adaptive(180.dp) ,
                         modifier = Modifier
                             .fillMaxSize() ,
                         userScrollEnabled = true ,

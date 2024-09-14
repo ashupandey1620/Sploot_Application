@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,16 +33,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.ashutosh.splootapplication.Presentation.NewsViewModel
 import com.ashutosh.splootapplication.R
+import com.ashutosh.splootapplication.ui.theme.SplootApplicationTheme
 
 
 @Composable
 fun CardFolderLayout(
-    icon: Int ,
-    name: String ,
-    description: String ,
-    modifiedDate: String ,
+    author: String,
+    content: String,
+    description: String,
+    publishedAt: String,
+    source: String ,
+    title: String ,
+    url: String ,
+    urlToImage: String ,
     navController: NavController ,
     onClick: () -> Unit
 ) {
@@ -50,98 +58,59 @@ fun CardFolderLayout(
     val newsVM : NewsViewModel = hiltViewModel()
 
 
+    val context = LocalContext.current
 
     Column (modifier = Modifier
         .padding(10.dp)
         .fillMaxWidth()
-        .height(200.dp)
+        .wrapContentHeight()
         .clip(RoundedCornerShape(15.dp))
         .background(Color.Gray.copy(0.3f))
         .clickable {
-
+            newsVM.selectID = url
+            newsVM.isOpenFolderClick = !newsVM.isOpenFolderClick
         }
        ,
         verticalArrangement = Arrangement.Top,
         ){
 
-
-
-
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween) {
+        AsyncImage(
+            model = ImageRequest.Builder(context)
+                .data(urlToImage)
+                .crossfade(true)
+                .build(),
+            contentDescription = "Loaded image",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(180.dp)
+            ,
+        )
 
             Column ( modifier = Modifier
-                .fillMaxWidth(0.75f)
+                .fillMaxWidth()
                 .padding(vertical = 5.dp)
                 .padding(horizontal = 10.dp)){
                 Text(
-                    text = name ,
+                    text = title ,
                     color = Color(0xFFF6F6F6) ,
                     fontSize = 16.sp ,
-                    maxLines = 1 ,
+                    maxLines = 2 ,
+                    lineHeight = 18.sp,
                     softWrap = true ,
                     overflow = TextOverflow.Ellipsis
                 )
 
                 Text(
                     text = description ,
-                    color = Color(0xFFF6F6F6) ,
-                    fontSize = 14.sp ,
-                    maxLines = 1 ,
+                    color = Color.LightGray ,
+                    fontSize = 12.sp ,
+                    maxLines = 3 ,
                     softWrap = true ,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    lineHeight = 14.sp
                 )
             }
-
-            Icon(
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-                    .padding(vertical = 5.dp)
-                    .size(30.dp)
-                    .clickable {
-                        newsVM.isOpenFolderClick = !newsVM.isOpenFolderClick
-                    },
-                imageVector = Icons.Filled.MoreVert, contentDescription = "icon",
-                tint = Color.White)
-
-        }
-
-        Box(
-            contentAlignment = Alignment.BottomStart,
-            modifier = Modifier.padding(45.dp,20.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = icon) ,
-                contentDescription = null ,
-                modifier = Modifier
-                    .fillMaxSize() ,
-            )
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 18.dp)
-                    .padding(start = 18.dp)
-                    .size(30.dp) ,
-                horizontalAlignment = Alignment.CenterHorizontally ,
-                verticalArrangement = Arrangement.Center
-            ) {
-
-                Image(
-                    painter = painterResource(R.drawable.file) ,
-                    contentDescription = null ,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clickable {
-                            onClick()
-                        } ,
-                    contentScale = ContentScale.Crop
-                )
-
-            }
-
-        }
     }
 }
 
@@ -149,14 +118,16 @@ fun CardFolderLayout(
 @Preview()
 @Composable
 fun TeamItemPreview() {
-//    FSDTheme {
-//
+//    SplootApplicationTheme {
 //        CardFolderLayout(
-//            R.drawable.folder ,
-//            "Apple, Inc. (APPL)" ,
-//            "177.15" ,
-//            "0.88" ,
-////            navController
+//            "Author of the news" ,
+//            "Content of the news should be wuite long so njndjn jfnesdjs sjnflsf  jsenflsf selknfsnf" ,
+//            "description lorem",
+//            "today" ,
+//            "hh",
+//            "hhdh",
+//            "jdjjd",
+//            "https://unsplash.com/photos/a-person-sitting-on-a-rock-in-the-middle-of-a-field-nRGg4jofz8U"
 //        ) {}
 //    }
 

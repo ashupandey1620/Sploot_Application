@@ -32,13 +32,11 @@ fun AppNavigation(viewModel: NewsViewModel) {
 
             composable(Routes.Main.name) {
                 Main(
-                    navController
+                    navController,
+                    viewModel.appState,
+                    onMainEvent = viewModel::onEvent
                 )
             }
-
-
-
-
 
     }
 }

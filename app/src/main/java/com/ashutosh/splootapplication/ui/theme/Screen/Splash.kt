@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -64,13 +65,14 @@ fun Splash(navController: NavController) {
                 {
                     Image(
                         modifier = Modifier.width(220.dp)
-                            .wrapContentHeight(), painter = painterResource(id = R.drawable.tablet) , contentDescription = "")
+                            .wrapContentHeight(), painter = painterResource(id = R.drawable.tablet) , contentDescription = "",
+                        colorFilter = ColorFilter.tint(Color.White))
 
                     Text(text = " Online Samachaar",
                         modifier = Modifier
                             .width(150.dp)
                             .wrapContentHeight(),
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 18.sp,
                         fontStyle = FontStyle.Normal,
                         fontWeight = FontWeight.Medium,
